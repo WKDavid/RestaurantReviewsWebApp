@@ -12,6 +12,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetchCuisines();
 });
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }) .catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+}
+
 /**
  * Fetch all neighborhoods and set their HTML.
  */
@@ -140,6 +150,7 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
+  image.setAttribute('alt', 'restaurant image');
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
 
@@ -157,6 +168,9 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
+  more.setAttribute('aria-label', `${restaurant.name}`);
+  more.setAttribute('role', 'link');
+  more.className = 'restaurantLink';
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
 
