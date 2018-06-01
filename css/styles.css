@@ -75,9 +75,7 @@ nav h1 a {
     background-color: #eee0;
     font-size: calc(12px + (20 - 12) * ((100vw - 300px) / (1600 - 300)));
     margin: 0;
-		position: fixed;
 }
-
 /* Display list items side by side */
 #breadcrumb li {
     display: inline;
@@ -151,7 +149,8 @@ select:hover, select:focus {
   font-family: Georgia,Helvetica;
   margin: 0.8vw;
 	border-radius: 5px;
-  text-align: left;
+  text-align: center;
+  width: 27vw;
 }
 #restaurants-list .restaurant-img {
   background-color: #ccc;
